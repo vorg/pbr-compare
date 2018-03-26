@@ -1,0 +1,17 @@
+{
+  "name": "threejs-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marcin Ignac <marcin.ignac@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "three": "^0.91.0",
+    "three-gltf-loader": "^0.2.0",
+    "three-orbit-controls": "^82.1.0",
+    "three.equirectangular-to-cubemap": "^1.1.0"
+  }
+}
