@@ -23,7 +23,7 @@ var hdrTexture = new BABYLON.HDRCubeTexture('../assets/vatican_road_2k.hdr', sce
 // var hdrTexture = new BABYLON.HDRCubeTexture("/assets/OpenfootageNET_Staatsbridge_HDRI_low.hdr", scene, 512);
 var hdrSkybox = scene.createDefaultSkybox(hdrTexture, true);
 
-var dir = '../assets/FlightHelmet/gltf/'
+var dir = '../assets/FlightHelmet/glTF/'
 var file = 'FlightHelmet.gltf'
 BABYLON.SceneLoader.Append(dir, file, scene, function (newScene) {
 });

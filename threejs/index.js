@@ -35,7 +35,7 @@ textureLoader.load( '../assets/vatican_road_2k.jpg', function( res ) {
 	var envMap = equiToCube.convert( res, 1024 )
 	// envMap = getEnvMap()
 	var loader = new GLTFLoader()
-	loader.load('../assets/FlightHelmet/gltf/FlightHelmet.gltf', function (data) {
+	loader.load('../assets/FlightHelmet/glTF/FlightHelmet.gltf', function (data) {
 			var gltf = data
 			var object = gltf.scene
 

@@ -59,7 +59,7 @@ var app = clay.application.create('#viewport', {
         });
 
         // Load model. return a load promise to make sure the look will be start after model loaded.
-        return app.loadModel('../assets/FlightHelmet/gltf/FlightHelmet.gltf').then(function (scene) {
+        return app.loadModel('../assets/FlightHelmet/glTF/FlightHelmet.gltf').then(function (scene) {
           // scene.meshes.forEach((m) => m.material.set('environmentMap', cubemap))
         })
     },
