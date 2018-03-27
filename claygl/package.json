@@ -9,6 +9,6 @@
   "author": "Marcin Ignac <marcin.ignac@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "claygl": "^1.1.1"
+    "claygl": "^1.1.2"
   }
 }

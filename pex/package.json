@@ -1,0 +1,26 @@
+{
+  "name": "pex-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marcin Ignac <marcin.ignac@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.6.0",
+    "geom-edges": "^1.2.0",
+    "is-power-of-two": "^1.0.0",
+    "next-power-of-two": "^1.0.0",
+    "parse-hdr": "^1.0.0",
+    "pex-cam": "^2.6.0",
+    "pex-context": "^2.4.0",
+    "pex-geom": "^2.0.2",
+    "pex-gui": "^2.2.0",
+    "pex-io": "^1.5.3",
+    "pex-math": "^2.1.1",
+    "pex-renderer": "github:pex-gl/pex-renderer#648ebcb",
+    "primitive-box": "^1.0.0"
+  }
+}

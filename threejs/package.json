@@ -13,5 +13,8 @@
     "three-gltf-loader": "^0.2.0",
     "three-orbit-controls": "^82.1.0",
     "three.equirectangular-to-cubemap": "^1.1.0"
+  },
+  "devDependencies": {
+    "browserify": "^16.1.1"
   }
 }

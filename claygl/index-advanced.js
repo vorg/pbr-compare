@@ -1,6 +1,7 @@
 
 document.documentElement.style.height = '100%'
 const clay = require('claygl')
+const ClayAdvancedRenderer = require('./claygl-advanced-renderer')
 
 document.body.style.height = '100%'
 document.body.style.margin = '0'
@@ -29,6 +30,10 @@ var app = clay.application.create('#viewport', {
         this._camera.fov = 0.8 / Math.PI * 180
         this._camera.updateProjectionMatrix()
 
+        this._advancedRenderer = new ClayAdvancedRenderer(app.renderer, app.scene, app.timeline, {
+          shadow: true
+        });
+
         // Create light
         // app.createDirectionalLight([-1, -1, -1]);
 
@@ -56,12 +61,15 @@ var app = clay.application.create('#viewport', {
                 // Use the cubemap as environment
                 environmentMap: cubemap
             });
-        });
+        }).catch((e) => console.log(e));
+
+      this._mainLight = app.createDirectionalLight([-1, -2, -1]);
+        this._advancedRenderer.render();
 
         // Load model. return a load promise to make sure the look will be start after model loaded.
         return app.loadModel('../assets/FlightHelmet/gltf/FlightHelmet.gltf').then(function (scene) {
           // scene.meshes.forEach((m) => m.material.set('environmentMap', cubemap))
-        })
+        }).catch((e) => console.log(e))
     },
 
     loop: function (app) {

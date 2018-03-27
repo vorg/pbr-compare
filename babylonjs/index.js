@@ -19,11 +19,11 @@ camera.setTarget(BABYLON.Vector3.Zero());
 camera.attachControl(canvas, false);
 console.log(camera.position)
 
-var hdrTexture = new BABYLON.HDRCubeTexture('/assets/vatican_road_2k.hdr', scene, 512);
+var hdrTexture = new BABYLON.HDRCubeTexture('../assets/vatican_road_2k.hdr', scene, 512);
 // var hdrTexture = new BABYLON.HDRCubeTexture("/assets/OpenfootageNET_Staatsbridge_HDRI_low.hdr", scene, 512);
 var hdrSkybox = scene.createDefaultSkybox(hdrTexture, true);
 
-var dir = 'assets/FlightHelmet/gltf/'
+var dir = '../assets/FlightHelmet/gltf/'
 var file = 'FlightHelmet.gltf'
 BABYLON.SceneLoader.Append(dir, file, scene, function (newScene) {
 });

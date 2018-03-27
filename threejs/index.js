@@ -30,12 +30,12 @@ camera.position.set(4.82, 2.588, 8.36)
 orbitControls.update()
 
 var textureLoader = new THREE.TextureLoader()
-textureLoader.load( 'assets/vatican_road_2k.jpg', function( res ) {
+textureLoader.load( '../assets/vatican_road_2k.jpg', function( res ) {
 	var equiToCube = new EquirectangularToCubemap( renderer )
 	var envMap = equiToCube.convert( res, 1024 )
 	// envMap = getEnvMap()
 	var loader = new GLTFLoader()
-	loader.load('assets/FlightHelmet/gltf/FlightHelmet.gltf', function (data) {
+	loader.load('../assets/FlightHelmet/gltf/FlightHelmet.gltf', function (data) {
 			var gltf = data
 			var object = gltf.scene
 
@@ -61,7 +61,7 @@ textureLoader.load( 'assets/vatican_road_2k.jpg', function( res ) {
 })
 
 function getEnvMap() {
-	var path = 'assets/Park2/'
+	var path = '../assets/Park2/'
 	var format = '.jpg'
 	var urls = [
 		path + 'posx' + format, path + 'negx' + format,
