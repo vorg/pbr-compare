@@ -1,6 +1,6 @@
 # PBR Compare
 
-Testing different
+Testing different PBR implementations for glTF in WebGL
 
 ## Running code
 
