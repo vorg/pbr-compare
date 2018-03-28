@@ -14,15 +14,8 @@ document.body.appendChild(canvas)
 
 var app = clay.application.create('#viewport', {
 
-    graphic: {
-        shadow: true,
-
-        // Enable tonemapping
-        // tonemapping: true,
-
-        // Use linear color space instead of default sRGB.
-        linear: true
-    },
+    // Auto render should be disabled when using ClayAdvancedRenderer
+    autoRender: false,
 
     init: function (app) {
         // Create camera
@@ -33,7 +26,7 @@ var app = clay.application.create('#viewport', {
         this._advancedRenderer = new ClayAdvancedRenderer(app.renderer, app.scene, app.timeline, {
           shadow: true,
           temporalSuperSampling: {
-            enable: false
+            enable: true
           },
           postEffect: {
             enable: true,
@@ -41,9 +34,10 @@ var app = clay.application.create('#viewport', {
               enable: false
             },
             screenSpaceAmbientOcclusion: {
+              temporalFilter: true,
               enable: true,
               intensity: 1,
-              radius: 0.2
+              radius: 0.5
             },
             FXAA: {
               enable: true
@@ -66,7 +60,7 @@ var app = clay.application.create('#viewport', {
            this._advancedRenderer.render();
         }, this);
 
-        app.createAmbientCubemapLight('../assets/vatican_road_2k.hdr', 1, 1, 1)//0.009125);
+        app.createAmbientCubemapLight('../assets/vatican_road_2k.hdr', 1, 1, 0)//0.009125);
 
         var cubemap = new clay.TextureCube();
         app.loadTexture('../assets/vatican_road_2k.hdr', {
