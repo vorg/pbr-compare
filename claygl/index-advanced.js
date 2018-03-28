@@ -18,7 +18,7 @@ var app = clay.application.create('#viewport', {
         shadow: true,
 
         // Enable tonemapping
-        tonemapping: true,
+        // tonemapping: true,
 
         // Use linear color space instead of default sRGB.
         linear: true
@@ -31,7 +31,24 @@ var app = clay.application.create('#viewport', {
         this._camera.updateProjectionMatrix()
 
         this._advancedRenderer = new ClayAdvancedRenderer(app.renderer, app.scene, app.timeline, {
-          shadow: true
+          shadow: true,
+          temporalSuperSampling: {
+            enable: false
+          },
+          postEffect: {
+            enable: true,
+            bloom: {
+              enable: false
+            },
+            screenSpaceAmbientOcclusion: {
+              enable: true,
+              intensity: 1,
+              radius: 0.2
+            },
+            FXAA: {
+              enable: true
+            }
+          }
         });
 
         // Create light
@@ -45,12 +62,16 @@ var app = clay.application.create('#viewport', {
             domElement: app.container
         });
 
+        this._control.on('update', function () {
+           this._advancedRenderer.render();
+        }, this);
+
         app.createAmbientCubemapLight('../assets/vatican_road_2k.hdr', 1, 1, 1)//0.009125);
 
         var cubemap = new clay.TextureCube();
         app.loadTexture('../assets/vatican_road_2k.hdr', {
             flipY: false,
-            exposure: 0.5
+            exposure: 0
         }).then(function (panoramaTexture) {
             // Convert panorama to a cubemap
             clay.util.texture.panoramaToCubeMap(app.renderer, panoramaTexture, cubemap);
