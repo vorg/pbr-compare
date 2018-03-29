@@ -961,7 +961,9 @@ function loadScene (file, cb) {
   })
 }
 
-loadBinary('../assets/vatican_road_2k.hdr', (err, buf) => {
+const panoramaUrl = '../assets/Pisa/pisa.hdr'
+
+loadBinary(panoramaUrl, (err, buf) => {
   const hdrImg = parseHdr(buf)
   const panorama = ctx.texture2D({
     data: hdrImg.data,

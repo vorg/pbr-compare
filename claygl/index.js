@@ -12,6 +12,7 @@ canvas.style.height = '100%'
 canvas.id = 'viewport'
 document.body.appendChild(canvas)
 
+const panoramaUrl = '../assets/Pisa/pisa.hdr'
 var app = clay.application.create('#viewport', {
 
     // Auto render should be disabled when using ClayAdvancedRenderer
@@ -60,10 +61,10 @@ var app = clay.application.create('#viewport', {
            this._advancedRenderer.render();
         }, this);
 
-        app.createAmbientCubemapLight('../assets/vatican_road_2k.hdr', 1, 1, 0)//0.009125);
+        app.createAmbientCubemapLight(panoramaUrl, 1, 1, 0)//0.009125);
 
         var cubemap = new clay.TextureCube();
-        app.loadTexture('../assets/vatican_road_2k.hdr', {
+        app.loadTexture(panoramaUrl, {
             flipY: false,
             exposure: 0
         }).then(function (panoramaTexture) {
