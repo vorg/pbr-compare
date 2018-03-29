@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>PlayCanvas Hello Cube</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no' />
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+    <script src='playcanvas-stable.min.js'></script>
+    <script src='playcanvas-gltf.js'></script>
+</head>
+<body>
+    <script>
+      var canvas = document.createElement('canvas');
+      document.body.appendChild(canvas);
+      var app = new pc.Application(canvas, {});
+      app.start();
+      // fill the available space at full resolution
+      app.setCanvasFillMode(pc.FILLMODE_FILL_WINDOW);
+      app.setCanvasResolution(pc.RESOLUTION_AUTO);
+      app.scene.gammaCorrection = pc.GAMMA_SRGB;
+      app.scene.toneMapping = pc.TONEMAP_ACES;
+      // ensure canvas is resized when window changes size
+      window.addEventListener('resize', function() {
+        app.resizeCanvas();
+      });
+      // create camera entity
+      var camera = new pc.Entity('camera');
+      camera.addComponent('camera', {
+        clearColor: [ 0.1, 0.8, 0 ],
+        fov: 0.8 / Math.PI * 180
+      });
+      app.root.addChild(camera);
+      camera.setPosition(4.82, 2.588, 8.36);
+      camera.lookAt(0, 0, 0)
+      // create directional light entity
+      var light = new pc.Entity('light');
+      light.addComponent('light',);
+      app.root.addChild(light);
+      light.setEulerAngles(45, 0, 45);
+      // rotator script
+      //var Rotate = pc.createScript('rotate');
+      //Rotate.prototype.update = function (deltaTime) {
+      //  this.entity.rotate(0, deltaTime * 20, 0);
+      //};
+      // glTF scene root that rotates
+      var gltfRoot = new pc.Entity();
+      gltfRoot.addComponent('script');
+      gltfRoot.script.create('rotate');
+      app.root.addChild(gltfRoot);
+      app.assets.loadFromUrl('../assets/FlightHelmet/glTF/FlightHelmet.gltf', 'json', function (err, asset) {
+        var json = asset.resource;
+        var gltf = JSON.parse(json);
+        loadGltf(gltf, app.graphicsDevice, function (roots) {
+          // add the loaded scene to the hierarchy
+          roots.forEach(function (root) {
+            gltfRoot.addChild(root);
+          });
+        }, {
+          basePath: '../assets/FlightHelmet/glTF/'
+        });
+      });
+
+      var cubemapAsset = new pc.Asset('helipad', 'cubemap', {
+        url: "../assets/cubemap/6079289/Helipad.dds"
+      }, {
+        "textures": [
+            "../assets/Pisa/playcanvas/2660943/pisa_posx.jpg",
+            "../assets/Pisa/playcanvas/2660940/pisa_negx.jpg",
+            "../assets/Pisa/playcanvas/2660939/pisa_posy.jpg",
+            "../assets/Pisa/playcanvas/2660938/pisa_negy.jpg",
+            "../assets/Pisa/playcanvas/2660941/pisa_posz.jpg",
+            "../assets/Pisa/playcanvas/2660942/pisa_negz.jpg"
+        ],
+        "magFilter": 1,
+        "minFilter": 5,
+        "anisotropy": 1,
+        "name": "Pisa",
+        //"rgbm": true,
+        //"prefiltered": "../assets/cubemap/6079289/Helipad.dds"
+    });
+    app.assets.add(cubemapAsset);
+    app.assets.load(cubemapAsset);
+    cubemapAsset.ready(function () {
+        app.scene.skyboxMip = 2;
+        app.scene.setSkybox(cubemapAsset.resources);
+    });
+    </script>
+</body>
+</html>
