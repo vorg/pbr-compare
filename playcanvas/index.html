@@ -38,10 +38,10 @@
       camera.setPosition(4.82, 2.588, 8.36);
       camera.lookAt(0, 0, 0)
       // create directional light entity
-      var light = new pc.Entity('light');
-      light.addComponent('light',);
-      app.root.addChild(light);
-      light.setEulerAngles(45, 0, 45);
+      //var light = new pc.Entity('light');
+      //light.addComponent('light',);
+      //app.root.addChild(light);
+      //light.setEulerAngles(45, 0, 45);
       // rotator script
       //var Rotate = pc.createScript('rotate');
       //Rotate.prototype.update = function (deltaTime) {
@@ -49,8 +49,8 @@
       //};
       // glTF scene root that rotates
       var gltfRoot = new pc.Entity();
-      gltfRoot.addComponent('script');
-      gltfRoot.script.create('rotate');
+      //gltfRoot.addComponent('script');
+      //gltfRoot.script.create('rotate');
       app.root.addChild(gltfRoot);
       app.assets.loadFromUrl('../assets/FlightHelmet/glTF/FlightHelmet.gltf', 'json', function (err, asset) {
         var json = asset.resource;
@@ -65,30 +65,35 @@
         });
       });
 
-      var cubemapAsset = new pc.Asset('helipad', 'cubemap', {
-        url: "../assets/cubemap/6079289/Helipad.dds"
+      var cubemapAsset = new pc.Asset('pisa', 'cubemap', {
+        url: "../assets/Pisa/playcanvas/pisa.dds"
       }, {
         "textures": [
-            "../assets/Pisa/playcanvas/2660943/pisa_posx.jpg",
-            "../assets/Pisa/playcanvas/2660940/pisa_negx.jpg",
-            "../assets/Pisa/playcanvas/2660939/pisa_posy.jpg",
-            "../assets/Pisa/playcanvas/2660938/pisa_negy.jpg",
-            "../assets/Pisa/playcanvas/2660941/pisa_posz.jpg",
-            "../assets/Pisa/playcanvas/2660942/pisa_negz.jpg"
+            "../assets/Pisa/playcanvas/pisa_posx.jpg",
+            "../assets/Pisa/playcanvas/pisa_negx.jpg",
+            "../assets/Pisa/playcanvas/pisa_posy.jpg",
+            "../assets/Pisa/playcanvas/pisa_negy.jpg",
+            "../assets/Pisa/playcanvas/pisa_posz.jpg",
+            "../assets/Pisa/playcanvas/pisa_negz.jpg"
         ],
         "magFilter": 1,
         "minFilter": 5,
         "anisotropy": 1,
+        "loadFaces": true,
         "name": "Pisa",
         //"rgbm": true,
-        //"prefiltered": "../assets/cubemap/6079289/Helipad.dds"
+        "prefiltered": "../assets/Pisa/playcanvas/pisa.dds"
     });
+    //app.scene.skyboxMip = 0;
+    //cubemapAsset.loadFaces = true
     app.assets.add(cubemapAsset);
     app.assets.load(cubemapAsset);
+    //this.app.assets.load(cubemapAsset)
     cubemapAsset.ready(function () {
         app.scene.skyboxMip = 2;
         app.scene.setSkybox(cubemapAsset.resources);
     });
+    //app.setSkybox(cubemapAsset)
     </script>
 </body>
 </html>
