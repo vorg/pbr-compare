@@ -1,6 +1,8 @@
 # PBR Compare
 
-Testing different PBR implementations for glTF in WebGL
+Testing different PBR implementations for glTF in WebGL with HDR Envmaps and IBL.
+
+![](screenshot.jpg)
 
 ## Running code
 
@@ -17,7 +19,33 @@ browserify index.js -o bundle.js
 
 ## Live demo
 
-http://vorg.github.io/pbr-compare/index.html
+[http://vorg.github.io/pbr-compare/index.html](http://vorg.github.io/pbr-compare/index.html)
+
+## Notes
+
+### [ClayGL](http://claygl.xyz)
+
+- I'm using [Advanced Renderer](https://github.com/pissang/claygl-advanced-renderer) for SSAO.
+- [ ] There is inconsitency with environment map orientation [#5](https://github.com/vorg/pbr-compare/issues/5)
+
+### [PEX](http://pex.gl)
+
+- [ ] There is inconsitency with environment map orientation
+- [ ] There is inconsitency with environment map orientation [#5](https://github.com/vorg/pbr-compare/issues/5)
+
+### [THREE](http://threejs.org)
+
+- [ ] I'm using HDR Cubemap instead of Equirect HDR Panorama [#3](https://github.com/vorg/pbr-compare/issues/3)
+- [ ] I'm using LDR Cubemap for Skybox and HDR cubemap for reflections [#4](https://github.com/vorg/pbr-compare/issues/4)
+
+### [BabylonJS](http://babylonjs.com)
+
+- No issues here
+
+### TODO: [Playcanvas](http://playcanvas.com)
+
+- [ ] [Playcanvas GLTF Loader](https://github.com/playcanvas/playcanvas-gltf)
+
 
 ## Credits
 
