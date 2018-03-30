@@ -65,35 +65,47 @@
         });
       });
 
-      var cubemapAsset = new pc.Asset('pisa', 'cubemap', {
-        url: "../assets/Pisa/playcanvas/pisa.dds"
-      }, {
-        "textures": [
-            "../assets/Pisa/playcanvas/pisa_posx.jpg",
-            "../assets/Pisa/playcanvas/pisa_negx.jpg",
-            "../assets/Pisa/playcanvas/pisa_posy.jpg",
-            "../assets/Pisa/playcanvas/pisa_negy.jpg",
-            "../assets/Pisa/playcanvas/pisa_posz.jpg",
-            "../assets/Pisa/playcanvas/pisa_negz.jpg"
-        ],
-        "magFilter": 1,
-        "minFilter": 5,
-        "anisotropy": 1,
-        "loadFaces": true,
-        "name": "Pisa",
-        //"rgbm": true,
-        "prefiltered": "../assets/Pisa/playcanvas/pisa.dds"
-    });
-    //app.scene.skyboxMip = 0;
-    //cubemapAsset.loadFaces = true
-    app.assets.add(cubemapAsset);
-    app.assets.load(cubemapAsset);
-    //this.app.assets.load(cubemapAsset)
-    cubemapAsset.ready(function () {
-        app.scene.skyboxMip = 2;
-        app.scene.setSkybox(cubemapAsset.resources);
-    });
-    //app.setSkybox(cubemapAsset)
+      var texCounter = 0;
+      var loadedCubeFace = function() {
+        texCounter++;
+        if (texCounter === 6) {
+            var cubemapAsset = new pc.Asset('pisa', 'cubemap', {
+                url: "../assets/Pisa/playcanvas/pisa.dds"
+              }, {
+                "textures": [
+                    app.assets.find("pisa_posx.jpg").id,
+                    app.assets.find("pisa_negx.jpg").id,
+                    app.assets.find("pisa_posy.jpg").id,
+                    app.assets.find("pisa_negy.jpg").id,
+                    app.assets.find("pisa_posz.jpg").id,
+                    app.assets.find("pisa_negz.jpg").id
+                ],
+                "magFilter": 1,
+                "minFilter": 5,
+                "anisotropy": 1,
+                "loadFaces": true,
+                "name": "Pisa",
+                //"rgbm": true,
+                "prefiltered": "../assets/Pisa/playcanvas/pisa.dds"
+            });
+            app.scene.skyboxMip = 0;
+            cubemapAsset.loadFaces = true
+
+           app.assets.add(cubemapAsset);
+           app.assets.load(cubemapAsset);
+           this.app.assets.load(cubemapAsset)
+           cubemapAsset.ready(function () {
+               app.scene.setSkybox(cubemapAsset.resources);
+           });
+        }
+      }
+      app.assets.loadFromUrl("../assets/Pisa/playcanvas/pisa_posx.jpg", 'texture', function (err, asset) {loadedCubeFace();});
+      app.assets.loadFromUrl("../assets/Pisa/playcanvas/pisa_negx.jpg", 'texture', function (err, asset) {loadedCubeFace();});
+      app.assets.loadFromUrl("../assets/Pisa/playcanvas/pisa_posy.jpg", 'texture', function (err, asset) {loadedCubeFace();});
+      app.assets.loadFromUrl("../assets/Pisa/playcanvas/pisa_negy.jpg", 'texture', function (err, asset) {loadedCubeFace();});
+      app.assets.loadFromUrl("../assets/Pisa/playcanvas/pisa_posz.jpg", 'texture', function (err, asset) {loadedCubeFace();});
+      app.assets.loadFromUrl("../assets/Pisa/playcanvas/pisa_negz.jpg", 'texture', function (err, asset) {loadedCubeFace();});
+
     </script>
 </body>
 </html>
