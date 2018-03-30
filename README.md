@@ -2,7 +2,21 @@
 
 Testing different PBR implementations for glTF in WebGL with HDR Envmaps and IBL.
 
+**Please Note:** On a daily basis I use PEX so pull requests, improvements and other engine suggestions welcome!
+
+Required features:
+
+ - glTF 2.0 loading
+ - HDR equirectangular panorama skybox (fallback to engine specific Cubemap layout if not supported)
+ - PBR Rendering with image based lighting and prefiltered rough reflections
+ - SSAO
+
+
 ![](screenshot.jpg)
+
+## Live demo
+
+[http://vorg.github.io/pbr-compare/index.html](http://vorg.github.io/pbr-compare/index.html)
 
 ## Running code
 
@@ -16,10 +30,6 @@ browserify index.js -o bundle.js
 ```
 
 3. Open repo/index.html or library_name/index.html
-
-## Live demo
-
-[http://vorg.github.io/pbr-compare/index.html](http://vorg.github.io/pbr-compare/index.html)
 
 ## Notes
 
@@ -42,9 +52,9 @@ browserify index.js -o bundle.js
 
 - No issues here
 
-### TODO: [Playcanvas](http://playcanvas.com)
+### [PlayCanvas](http://playcanvas.com)
 
-- [ ] [Playcanvas GLTF Loader](https://github.com/playcanvas/playcanvas-gltf)
+- [ ] Albedo seems to be broken and too dark
 
 
 ## Credits
