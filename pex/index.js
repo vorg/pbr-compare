@@ -1004,6 +1004,38 @@ loadBinary(panoramaUrl, (err, buf) => {
   State.reflectionProbe.set({ dirty: true })
 })
 
+var xAxis = renderer.add(renderer.entity([
+  renderer.geometry(createCube(4, 0.03, 0.03)),
+  renderer.transform({
+    position: [2, 0, 0]
+  }),
+  renderer.material({
+    baseColor: [0, 0, 0, 1],
+    emissiveColor: [1, 0, 0, 1]
+  })
+]))
+
+var yAxis = renderer.add(renderer.entity([
+  renderer.geometry(createCube(0.03, 4, 0.03)),
+  renderer.transform({
+    position: [0, 2, 0]
+  }),
+  renderer.material({
+    baseColor: [0, 0, 0, 1],
+    emissiveColor: [0, 1, 0, 1]
+  })
+]))
+
+var zAxis = renderer.add(renderer.entity([
+  renderer.geometry(createCube(0.03, 0.03, 4)),
+  renderer.transform({
+    position: [0, 0, 2]
+  }),
+  renderer.material({
+    baseColor: [0, 0, 0, 1],
+    emissiveColor: [0, 0, 1, 1]
+  })
+]))
 // loadBinary('assets/envmaps/Footprint_Court/Footprint_Court_Env.hdr', (err, buf) => {
 // loadBinary('assets/envmaps/Factory_Catwalk/Factory_Catwalk_Env.hdr', (err, buf) => {
 // loadBinary('assets/envmaps/Mono_Lake_B/Mono_Lake_B_Env.hdr', (err, buf) => {

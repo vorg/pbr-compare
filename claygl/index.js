@@ -79,7 +79,25 @@ var app = clay.application.create('#viewport', {
             });
         }).catch((e) => console.log(e));
 
-      this._mainLight = app.createDirectionalLight([-1, -2, -1]);
+        var xAxis = app.createCube({ color: 'red' });
+        // looks like cube is -1, 1, not 0.5, 0.5 so we scale by 2 not 4
+        xAxis.scale.x = 4 / 2
+        xAxis.scale.y = 0.03 / 2
+        xAxis.scale.z = 0.03 / 2
+        xAxis.position.x = 2;
+
+        var yAxis = app.createCube({ color: 'green' });
+        yAxis.scale.x = 0.03 / 2
+        yAxis.scale.y = 4 / 2
+        yAxis.scale.z = 0.03 / 2
+        yAxis.position.y = 2;
+
+        var zAxis = app.createCube({ color: 'blue' });
+        zAxis.scale.x = 0.03 / 2
+        zAxis.scale.y = 0.03 / 2
+        zAxis.scale.z = 4 / 2
+        zAxis.position.z = 2;
+
         this._advancedRenderer.render();
 
         // Load model. return a load promise to make sure the look will be start after model loaded.

@@ -34,6 +34,27 @@ var orbitControls = new OrbitControls(camera, renderer.domElement)
 camera.position.set(4.82, 2.588, 8.36)
 orbitControls.update()
 
+var xAxis = new THREE.Mesh(
+  new THREE.BoxGeometry( 4, 0.03, 0.03 ),
+  new THREE.MeshBasicMaterial( {color: 0xff0000} )
+);
+xAxis.position.set(2, 0, 0)
+scene.add( xAxis );
+
+var yAxis = new THREE.Mesh(
+  new THREE.BoxGeometry( 0.03, 4, 0.03 ),
+  new THREE.MeshBasicMaterial( {color: 0x00FF00} )
+);
+yAxis.position.set(0, 2, 0)
+scene.add( yAxis );
+
+var zAxis = new THREE.Mesh(
+  new THREE.BoxGeometry( 0.03, 0.03, 4 ),
+  new THREE.MeshBasicMaterial( {color: 0x0000FF} )
+);
+zAxis.position.set(0, 0, 2)
+scene.add( zAxis );
+
 var genCubeUrls = function (prefix, postfix) {
   return [
     prefix + 'px' + postfix, prefix + 'nx' + postfix,
@@ -55,61 +76,35 @@ new THREE.HDRCubeTextureLoader().load(THREE.UnsignedByteType, hdrUrls, function 
   loadGLTF(hdrCubeMap, envMap)
 })
 
-/*
-var textureLoader = new THREE.TextureLoader()
-textureLoader.load('../assets/vatican_road_2k.jpg', function (res) {
-  var equiToCube = new EquirectangularToCubemap(renderer)
-  var envMap = equiToCube.convert(res, 1024)
-	// envMap = getEnvMap()
-*
-*/
-
-
 function loadGLTF (cubeMap, envMap) {
-	var loader = new GLTFLoader()
-	loader.load('../assets/FlightHelmet/glTF/FlightHelmet.gltf', function (data) {
-		var gltf = data
-		var object = gltf.scene
+  var loader = new GLTFLoader()
+  loader.load('../assets/FlightHelmet/glTF/FlightHelmet.gltf', function (data) {
+    var gltf = data
+    var object = gltf.scene
 
-		object.traverse(function (node) {
-			if (node.isMesh) node.castShadow = true
-		})
-		object.traverse(function (node) {
-			if (node.material && (node.material.isMeshStandardMaterial ||
+    object.traverse(function (node) {
+      if (node.isMesh) node.castShadow = true
+    })
+    object.traverse(function (node) {
+      if (node.material && (node.material.isMeshStandardMaterial ||
 				(node.material.isShaderMaterial && node.material.envMap !== undefined))) {
-				node.material.envMap = envMap
-				node.material.needsUpdate = true
-			}
-		})
+        node.material.envMap = envMap
+        node.material.needsUpdate = true
+      }
+    })
 
-		var cubeShader = THREE.ShaderLib[ "cube" ];
-		var cubeMaterial = new THREE.ShaderMaterial( {
-			fragmentShader: cubeShader.fragmentShader,
-			vertexShader: cubeShader.vertexShader,
-			uniforms: cubeShader.uniforms,
-			depthWrite: false,
-			side: THREE.BackSide
-		} );
-		// cubeMap.format = cubeMap.images[0].format
-		// cubeMap.type = cubeMap.images[0].type
-    // console.log(cubeMap)
-		// cubeMaterial.uniforms[ "tCube" ].value = cubeMap;
-		// cubeMesh = new THREE.Mesh( new THREE.BoxBufferGeometry( 100, 100, 100 ), cubeMaterial );
-		// scene.add( cubeMesh );
+    var cubeShader = THREE.ShaderLib[ 'cube' ]
+    var cubeMaterial = new THREE.ShaderMaterial({
+      fragmentShader: cubeShader.fragmentShader,
+      vertexShader: cubeShader.vertexShader,
+      uniforms: cubeShader.uniforms,
+      depthWrite: false,
+      side: THREE.BackSide
+    })
 
-		// var geometry = new THREE.SphereBufferGeometry( 400.0, 48, 24 );
-		// sphereMaterial = new THREE.MeshLambertMaterial( { envMap: cubeMap } );
-		// sphereMesh = new THREE.Mesh( geometry, sphereMaterial );
-		// scene.add( sphereMesh );
-    //
     scene.background = new THREE.CubeTextureLoader()
-					.setPath( cubemapUrl )
-					.load( [ 'px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png' ] );
-
-    // cubeMap.encoding = THREE.LinearEncoding
-			// scene.background = getEnvMap()
-			// var ambient = new THREE.AmbientLight(0xFFFFFF)
-			// scene.add(ambient)
+					.setPath(cubemapUrl)
+					.load([ 'px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png' ])
 
     scene.add(object)
   })
