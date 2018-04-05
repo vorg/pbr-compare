@@ -12,12 +12,15 @@
     </style>
     <script src='playcanvas-stable.min.js'></script>
     <script src='playcanvas-gltf.js'></script>
+    <!--script src='orbit-camera.js'></script-->
 </head>
 <body>
     <script>
       var canvas = document.createElement('canvas');
       document.body.appendChild(canvas);
-      var app = new pc.Application(canvas, {});
+      var app = new pc.Application(canvas, {
+        mouse: new pc.Mouse(canvas)
+      });
       app.start();
       // fill the available space at full resolution
       app.setCanvasFillMode(pc.FILLMODE_FILL_WINDOW);
@@ -36,7 +39,28 @@
       });
       app.root.addChild(camera);
       camera.setPosition(4.82, 2.588, 8.36);
-      camera.lookAt(0, 0, 0)
+      camera.lookAt(0, 0, 0);
+      app.assets.loadFromUrl('orbit-camera.js',"script", function (err, asset) {
+        var script = asset.resource;
+        camera.addComponent('script');
+        camera.script.create('orbitCamera', {
+          attributes: {
+            distanceMax: 10,
+            distanceMin: 0.3,
+            pitchAngleMax: 90,
+            pitchAngleMin: 0,
+            inertiaFactor: 0.05,
+            focusEntity: gltfRoot,
+            frameOnStart: false
+          }
+        });
+        camera.script.create('mouseInput', {
+          attributes: {
+            orbitSensitivity: 0.3,
+            distanceSensitivity: 0.15,
+          }
+        });
+      });
       // create directional light entity
       //var light = new pc.Entity('light');
       //light.addComponent('light',);
