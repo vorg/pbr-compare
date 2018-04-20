@@ -15,9 +15,11 @@ var engine = new BABYLON.Engine(canvas, true);
 
 var scene = new BABYLON.Scene(engine);
 
-var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2 + Math.PI / 6, Math.PI / 2 - Math.PI / 12, 10, new BABYLON.Vector3(0, 0, 0), scene);
+var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2 + Math.PI / 6, Math.PI / 2 - Math.PI / 12, 1, new BABYLON.Vector3(0, 0, 0), scene);
 camera.setTarget(BABYLON.Vector3.Zero());
 camera.attachControl(canvas, false);
+camera.minZ = 0.1
+console.log('position', camera.position)
 
 var panoramaUrl = '../assets/Pisa/pisa.hdr'
 var hdrTexture = new BABYLON.HDRCubeTexture(panoramaUrl, scene, 512);
@@ -29,23 +31,23 @@ var file = 'FlightHelmet.gltf'
 BABYLON.SceneLoader.Append(dir, file, scene, function (newScene) {
 });
 
-var xAxis = BABYLON.MeshBuilder.CreateBox("xAxis", {height: 0.03, width: 4, depth: 0.03}, scene);
+var xAxis = BABYLON.MeshBuilder.CreateBox("xAxis", {height: 0.003, width: 0.4, depth: 0.003}, scene);
 xAxis.material = new BABYLON.StandardMaterial("myMaterial", scene);
 xAxis.material.diffuseColor = new BABYLON.Color3(0, 0, 0);
 xAxis.material.emissiveColor = new BABYLON.Color3(1, 0, 0);
-xAxis.position = new BABYLON.Vector3(2, 0, 0)
+xAxis.position = new BABYLON.Vector3(0.2, 0, 0)
 
-var yAxis = BABYLON.MeshBuilder.CreateBox("yAxis", {height: 4, width: 0.03, depth: 0.03}, scene);
+var yAxis = BABYLON.MeshBuilder.CreateBox("yAxis", {height: 0.4, width: 0.003, depth: 0.003}, scene);
 yAxis.material = new BABYLON.StandardMaterial("myMaterial", scene);
 yAxis.material.diffuseColor = new BABYLON.Color3(0, 0, 0);
 yAxis.material.emissiveColor = new BABYLON.Color3(0, 1, 0);
-yAxis.position = new BABYLON.Vector3(0, 2, 0)
+yAxis.position = new BABYLON.Vector3(0, 0.2, 0)
 
-var zAxis = BABYLON.MeshBuilder.CreateBox("yAxis", {height: 0.03, width: 0.03, depth: 4}, scene);
+var zAxis = BABYLON.MeshBuilder.CreateBox("yAxis", {height: 0.003, width: 0.003, depth: 0.4}, scene);
 zAxis.material = new BABYLON.StandardMaterial("myMaterial", scene);
 zAxis.material.diffuseColor = new BABYLON.Color3(0, 0, 0);
 zAxis.material.emissiveColor = new BABYLON.Color3(0, 0, 1);
-zAxis.position = new BABYLON.Vector3(0, 0, 2)
+zAxis.position = new BABYLON.Vector3(0, 0, 0.2)
 
 // var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
 

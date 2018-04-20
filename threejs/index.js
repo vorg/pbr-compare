@@ -31,28 +31,28 @@ var scene = new THREE.Scene()
 scene.background = new THREE.Color(0x222222)
 var camera = new THREE.PerspectiveCamera(45, container.offsetWidth / container.offsetHeight, 0.001, 100)
 var orbitControls = new OrbitControls(camera, renderer.domElement)
-camera.position.set(4.82, 2.588, 8.36)
+camera.position.set(0.482, 0.2588, 0.836)
 orbitControls.update()
 
 var xAxis = new THREE.Mesh(
-  new THREE.BoxGeometry( 4, 0.03, 0.03 ),
+  new THREE.BoxGeometry( 0.4, 0.003, 0.003 ),
   new THREE.MeshBasicMaterial( {color: 0xff0000} )
 );
-xAxis.position.set(2, 0, 0)
+xAxis.position.set(0.2, 0, 0)
 scene.add( xAxis );
 
 var yAxis = new THREE.Mesh(
-  new THREE.BoxGeometry( 0.03, 4, 0.03 ),
+  new THREE.BoxGeometry( 0.003, 0.4, 0.003 ),
   new THREE.MeshBasicMaterial( {color: 0x00FF00} )
 );
-yAxis.position.set(0, 2, 0)
+yAxis.position.set(0, 0.2, 0)
 scene.add( yAxis );
 
 var zAxis = new THREE.Mesh(
-  new THREE.BoxGeometry( 0.03, 0.03, 4 ),
+  new THREE.BoxGeometry( 0.003, 0.003, 0.4 ),
   new THREE.MeshBasicMaterial( {color: 0x0000FF} )
 );
-zAxis.position.set(0, 0, 2)
+zAxis.position.set(0, 0, 0.2)
 scene.add( zAxis );
 
 var genCubeUrls = function (prefix, postfix) {

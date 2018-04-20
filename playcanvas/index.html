@@ -38,7 +38,7 @@
         fov: 0.8 / Math.PI * 180
       });
       app.root.addChild(camera);
-      camera.setPosition(4.82, 2.588, 8.36);
+      camera.setPosition(0.482, 0.258, 0.836);
       camera.lookAt(0, 0, 0);
       app.assets.loadFromUrl('orbit-camera.js',"script", function (err, asset) {
         var script = asset.resource;
@@ -143,8 +143,8 @@
       xAxis.addComponent("model", {
           type: "box"
       });
-      xAxis.setLocalScale(4, 0.03, 0.03);
-      xAxis.setLocalPosition(2, 0, 0);
+      xAxis.setLocalScale(0.4, 0.003, 0.003);
+      xAxis.setLocalPosition(0.2, 0, 0);
       var material = createMaterial({
           diffuse: new pc.Color(0, 0, 0),
           emissive: new pc.Color(1, 0, 0),
@@ -156,8 +156,8 @@
       yAxis.addComponent("model", {
           type: "box"
       });
-      yAxis.setLocalScale(0.03, 4, 0.03);
-      yAxis.setLocalPosition(0, 2, 0);
+      yAxis.setLocalScale(0.003, 0.4, 0.003);
+      yAxis.setLocalPosition(0, 0.2, 0);
       var material = createMaterial({
           diffuse: new pc.Color(0, 0, 0),
           emissive: new pc.Color(0, 1, 0),
@@ -169,8 +169,8 @@
       zAxis.addComponent("model", {
           type: "box"
       });
-      zAxis.setLocalScale(0.03, 0.03, 4);
-      zAxis.setLocalPosition(0, 0, 2);
+      zAxis.setLocalScale(0.003, 0.003, 0.4);
+      zAxis.setLocalPosition(0, 0, 0.2);
       var material = createMaterial({
           diffuse: new pc.Color(0, 0, 0),
           emissive: new pc.Color(0, 0, 1),

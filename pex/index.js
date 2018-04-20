@@ -214,7 +214,7 @@ function initCamera () {
   const camera = createCamera({
     fov: 0.8,
     aspect: ctx.gl.drawingBufferWidth / ctx.gl.drawingBufferHeight,
-    position: [4.82, 2.588, 8.36],
+    position: [0.482, 0.258, 0.836],
     target: [0, 0, 0],
     near: 0.1,
     far: 100
@@ -1005,9 +1005,9 @@ loadBinary(panoramaUrl, (err, buf) => {
 })
 
 var xAxis = renderer.add(renderer.entity([
-  renderer.geometry(createCube(4, 0.03, 0.03)),
+  renderer.geometry(createCube(0.4, 0.003, 0.003)),
   renderer.transform({
-    position: [2, 0, 0]
+    position: [0.2, 0, 0]
   }),
   renderer.material({
     baseColor: [0, 0, 0, 1],
@@ -1016,9 +1016,9 @@ var xAxis = renderer.add(renderer.entity([
 ]))
 
 var yAxis = renderer.add(renderer.entity([
-  renderer.geometry(createCube(0.03, 4, 0.03)),
+  renderer.geometry(createCube(0.003, 0.4, 0.003)),
   renderer.transform({
-    position: [0, 2, 0]
+    position: [0, 0.2, 0]
   }),
   renderer.material({
     baseColor: [0, 0, 0, 1],
@@ -1027,9 +1027,9 @@ var yAxis = renderer.add(renderer.entity([
 ]))
 
 var zAxis = renderer.add(renderer.entity([
-  renderer.geometry(createCube(0.03, 0.03, 4)),
+  renderer.geometry(createCube(0.003, 0.003, 0.4)),
   renderer.transform({
-    position: [0, 0, 2]
+    position: [0, 0, 0.2]
   }),
   renderer.material({
     baseColor: [0, 0, 0, 1],

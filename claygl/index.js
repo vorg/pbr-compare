@@ -20,7 +20,7 @@ var app = clay.application.create('#viewport', {
 
     init: function (app) {
         // Create camera
-        this._camera = app.createCamera([4.82, 2.588, 8.36], [0, 0, 0]);
+        this._camera = app.createCamera([0.482, 0.258, 0.836], [0, 0, 0]);
         this._camera.fov = 0.8 / Math.PI * 180
         this._camera.updateProjectionMatrix()
 
@@ -81,22 +81,22 @@ var app = clay.application.create('#viewport', {
 
         var xAxis = app.createCube({ color: 'red' });
         // looks like cube is -1, 1, not 0.5, 0.5 so we scale by 2 not 4
-        xAxis.scale.x = 4 / 2
-        xAxis.scale.y = 0.03 / 2
-        xAxis.scale.z = 0.03 / 2
-        xAxis.position.x = 2;
+        xAxis.scale.x = 0.4 / 2
+        xAxis.scale.y = 0.003 / 2
+        xAxis.scale.z = 0.003 / 2
+        xAxis.position.x = 0.2;
 
         var yAxis = app.createCube({ color: 'green' });
-        yAxis.scale.x = 0.03 / 2
-        yAxis.scale.y = 4 / 2
-        yAxis.scale.z = 0.03 / 2
-        yAxis.position.y = 2;
+        yAxis.scale.x = 0.003 / 2
+        yAxis.scale.y = 0.4 / 2
+        yAxis.scale.z = 0.003 / 2
+        yAxis.position.y = 0.2;
 
         var zAxis = app.createCube({ color: 'blue' });
-        zAxis.scale.x = 0.03 / 2
-        zAxis.scale.y = 0.03 / 2
-        zAxis.scale.z = 4 / 2
-        zAxis.position.z = 2;
+        zAxis.scale.x = 0.003 / 2
+        zAxis.scale.y = 0.003 / 2
+        zAxis.scale.z = 0.4 / 2
+        zAxis.position.z = 0.2;
 
         this._advancedRenderer.render();
 
